@@ -1,0 +1,36 @@
+name: pywb-browsers
+auto_remove: false
+
+volumes:
+  tmpdir: '/tmp/.X11-unix'
+
+containers:
+  - name: pywb
+    image: oldwebtoday/pywb
+    environment:
+      PROXY_TIMESTAMP: '1996'
+
+  - name: xserver
+    image: oldwebtoday/vnc-webrtc-audio
+    ports:
+      vnc_port: 6080
+      cmd_port: 6082
+      ice_tcp_port: 10235
+      ice_udp_port: '10235/udp'
+
+    environment:
+      IDLE_TIMEOUT: '${IDLE_TIMEOUT}'
+
+  - name: browser
+    image: oldwebtoday/base-browser
+    set_user_params: true
+
+    environment:
+      DISPLAY: ':99'
+      PULSE_SERVER: '/tmp/.X11-unix/pulse-socket'
+
+      PROXY_HOST: 'pywb'
+      PROXY_PORT: '8080'
+      PROXY_CA_URL: 'http://wsgiprox/download/pem'
+      PROXY_CA_FILE: '/tmp/proxy-ca.pem'
+

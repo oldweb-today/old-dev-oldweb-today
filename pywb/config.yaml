@@ -1,0 +1,24 @@
+debug: true
+
+proxy:
+  coll: all
+  enable_content_rewrite: false
+
+  ca_name: pywb OWT CA
+  ca_file_cache: ./proxy-certs/pywb-ca.pem
+
+collections:
+  all:
+    index_group:
+      ia:   cdx+https://web.archive.org/cdx /web
+      apt:  memento+https://arquivo.pt/wayback/
+      ukwa:
+          type: cdx
+          api_url: https://www.webarchive.org.uk/wayback/archive/cdx?url={url}&closest={closest}&sort=closest'
+          replay_url: https://www.webarchive.org.uk/wayback/archive/{timestamp}id_/{url}
+
+      #liveweb: live
+
+    timeout: 10
+
+
