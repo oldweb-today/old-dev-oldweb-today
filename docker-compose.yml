@@ -3,6 +3,7 @@ version: '3.5'
 services:
     shepherd:
         image: oldwebtoday/shepherd:1.1.0-dev
+        command: python -u main.py
         environment:
             - BROWSER_NET=oldweb-today_browsers
             - PROXY_HOST=pywb
@@ -13,6 +14,10 @@ services:
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ./flocks:/app/flocks
+            - ./main.py:/app/main.py
+            - ./pool_config.yaml:/app/pool_config.yaml
+            - ./templates/:/app/shepherd/templates/
+            - ./static/:/app/shepherd/static/
 
         ports:
             - 9020:9020
