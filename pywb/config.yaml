@@ -8,6 +8,7 @@ proxy:
   ca_file_cache: ./proxy-certs/pywb-ca.pem
 
 collections:
+  live: $live
   all:
     index_group:
       ia:   cdx+https://web.archive.org/cdx /web

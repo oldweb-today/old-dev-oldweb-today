@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.3'
 
 services:
     shepherd:
@@ -7,16 +7,18 @@ services:
         environment:
             - BROWSER_NET=oldweb-today_browsers
             - PROXY_HOST=pywb
+            - PROXY_PORT=8080
+            - CONTROLS_TEMPLATE=replay.html
+            - HOME_TEMPLATE=index.html
 
         depends_on:
             - redis
 
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - ./flocks:/app/flocks
             - ./main.py:/app/main.py
             - ./pool_config.yaml:/app/pool_config.yaml
-            - ./templates/:/app/shepherd/templates/
+            - ./templates/:/app/owt_templates/
             - ./static/:/app/shepherd/static/
 
         ports:

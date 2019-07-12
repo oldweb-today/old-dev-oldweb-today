@@ -28,7 +28,7 @@ class OWTProxyApp(FrontEndApp):
     def proxy_route_request(self, url, environ):
         try:
             key = 'up:' + environ['REMOTE_ADDR']
-            timestamp = self.redis.hget(key, 'TIMESTAMP') or timestamp_now()
+            timestamp = self.redis.hget(key, 'timestamp') or timestamp_now()
             environ['pywb_redis_key'] = key
             environ['pywb_proxy_default_timestamp'] = timestamp
         except Exception as e:
