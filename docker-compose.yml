@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
     shepherd:
-        image: oldwebtoday/shepherd:1.1.0-dev
+        image: oldwebtoday/shepherd:1.1.0
         command: python -u main.py
         environment:
             - BROWSER_NET=oldweb-today_browsers
@@ -19,7 +19,7 @@ services:
             - ./main.py:/app/main.py
             - ./pool_config.yaml:/app/pool_config.yaml
             - ./templates/:/app/owt_templates/
-            - ./static/:/app/shepherd/static/
+            - ./static/:/app/static/
 
         ports:
             - 9020:9020
